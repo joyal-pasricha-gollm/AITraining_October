@@ -1,0 +1,908 @@
+WEEK2 DAY 3 WEDNESDAY COSMOS DB SQL API ASSIGNMENT-2 ( Assignment 1 after this)
+Azure Cosmos DB SQL API Assignment —Hotel Booking Analytics
+Create
+Database: hotel_network
+Container: bookings
+Partition Key: /city
+
+Data:
+Insert these documents into the bookings container.
+{
+"id": "HB001",
+"guest_name": "Arjun Sethi",
+"city": "Hyderabad",
+"hotel_name": "Grand Meridian",
+"room_type": "Deluxe",
+"nights": 3,
+"room_rate": 5200,
+"booking_amount": 15600,
+"booking_status": "Confirmed",
+"rating": 4.5
+}
+
+{
+"id": "HB002",
+"guest_name": "Mira Kulkarni",
+"city": "Hyderabad",
+"hotel_name": "Lakeview Residency",
+"room_type": "Standard",
+"nights": 2,
+"room_rate": 3200,
+"booking_amount": 6400,
+
+"booking_status": "Completed",
+"rating": 4.1
+}
+
+{
+"id": "HB003",
+"guest_name": "Faizan Mir",
+"city": "Bengaluru",
+"hotel_name": "Tech Park Suites",
+"room_type": "Executive",
+"nights": 4,
+"room_rate": 6800,
+"booking_amount": 27200,
+"booking_status": "Confirmed",
+"rating": 4.7
+}
+
+{
+"id": "HB004",
+"guest_name": "Nisha Balan",
+"city": "Bengaluru",
+"hotel_name": "Urban Nest",
+"room_type": "Standard",
+"nights": 1,
+"room_rate": 3500,
+"booking_amount": 3500,
+"booking_status": "Cancelled",
+"rating": 3.9
+}
+
+{
+"id": "HB005",
+"guest_name": "Ritesh Mehra",
+"city": "Chennai",
+"hotel_name": "Marina Crown",
+"room_type": "Suite",
+"nights": 3,
+"room_rate": 9000,
+"booking_amount": 27000,
+"booking_status": "Completed",
+"rating": 4.8
+}
+
+{
+"id": "HB006",
+"guest_name": "Tara Nair",
+"city": "Chennai",
+"hotel_name": "Bay Comfort",
+"room_type": "Deluxe",
+"nights": 2,
+"room_rate": 4800,
+"booking_amount": 9600,
+"booking_status": "Confirmed",
+"rating": 4.2
+}
+
+{
+"id": "HB007",
+"guest_name": "Kabir Oberoi",
+"city": "Pune",
+"hotel_name": "Central Park Inn",
+"room_type": "Executive",
+"nights": 5,
+"room_rate": 6500,
+"booking_amount": 32500,
+"booking_status": "Completed",
+"rating": 4.6
+}
+
+{
+"id": "HB008",
+"guest_name": "Sneha Joshi",
+"city": "Pune",
+"hotel_name": "Green Leaf Hotel",
+"room_type": "Standard",
+"nights": 3,
+"room_rate": 3000,
+"booking_amount": 9000,
+"booking_status": "Confirmed",
+"rating": 4.0
+}
+
+{
+"id": "HB009",
+"guest_name": "Yusuf Merchant",
+
+"city": "Mumbai",
+"hotel_name": "Sea Crest",
+"room_type": "Suite",
+"nights": 4,
+"room_rate": 10500,
+"booking_amount": 42000,
+"booking_status": "Confirmed",
+"rating": 4.9
+}
+
+{
+"id": "HB010",
+"guest_name": "Divya Menon",
+"city": "Mumbai",
+"hotel_name": "Metro Grand",
+"room_type": "Deluxe",
+"nights": 2,
+"room_rate": 5500,
+"booking_amount": 11000,
+"booking_status": "Completed",
+"rating": 4.3
+}
+
+{
+"id": "HB011",
+"guest_name": "Aman Verma",
+"city": "Delhi",
+"hotel_name": "Capital Palace",
+"room_type": "Executive",
+"nights": 3,
+"room_rate": 7200,
+"booking_amount": 21600,
+"booking_status": "Confirmed",
+"rating": 4.4
+}
+
+{
+"id": "HB012",
+"guest_name": "Leena Francis",
+"city": "Delhi",
+"hotel_name": "North Gate Hotel",
+"room_type": "Standard",
+
+"nights": 2,
+"room_rate": 3400,
+"booking_amount": 6800,
+"booking_status": "Cancelled",
+"rating": 3.8
+}
+
+{
+"id": "HB013",
+"guest_name": "Vikram Rao",
+"city": "Jaipur",
+"hotel_name": "Royal Courtyard",
+"room_type": "Suite",
+"nights": 3,
+"room_rate": 8800,
+"booking_amount": 26400,
+"booking_status": "Completed",
+"rating": 4.7
+}
+
+{
+"id": "HB014",
+"guest_name": "Pooja Arora",
+"city": "Jaipur",
+"hotel_name": "Pink City Stay",
+"room_type": "Deluxe",
+"nights": 2,
+"room_rate": 4500,
+"booking_amount": 9000,
+"booking_status": "Confirmed",
+"rating": 4.1
+}
+
+{
+"id": "HB015",
+"guest_name": "Noel George",
+"city": "Kochi",
+"hotel_name": "Harbour View",
+"room_type": "Executive",
+"nights": 4,
+"room_rate": 6200,
+"booking_amount": 24800,
+
+"booking_status": "Completed",
+"rating": 4.6
+}
+
+{
+"id": "HB016",
+"guest_name": "Ishita Sen",
+"city": "Kochi",
+"hotel_name": "Palm Grove",
+"room_type": "Standard",
+"nights": 1,
+"room_rate": 2800,
+"booking_amount": 2800,
+"booking_status": "Confirmed",
+"rating": 4.0
+}
+
+{
+"id": "HB017",
+"guest_name": "Rahim Khan",
+"city": "Bhopal",
+"hotel_name": "Lake Square",
+"room_type": "Deluxe",
+"nights": 3,
+"room_rate": 4700,
+"booking_amount": 14100,
+"booking_status": "Confirmed",
+"rating": 4.2
+}
+
+{
+"id": "HB018",
+"guest_name": "Keerthi Iyer",
+"city": "Bhopal",
+"hotel_name": "Central Stay",
+"room_type": "Standard",
+"nights": 2,
+"room_rate": 3100,
+"booking_amount": 6200,
+"booking_status": "Completed",
+"rating": 4.1
+}
+
+Section A — Basic SELECT
+1. Display all documents in the container.
+SELECT * FROM c
+2. Display only guest_name , city , and hotel_name .
+SELECT c.guest_name, c.city, c.hotel_name FROM c
+3. Display guest_name , room_type , nights , and booking_amount .
+SELECT c.guest_name, c.room_type, c.nights, c.booking_amount FROM c
+4. Display id , guest_name , and booking_status .
+SELECT c.id, c.guest_name, c.booking_status FROM c
+
+Section B — WHERE Filters
+5. Display all bookings from Hyderabad.
+SELECT * FROM c WHERE c.city = "Hyderabad"
+6. Display all bookings from Mumbai.
+SELECT * FROM c WHERE c.city = "Mumbai"
+7. Display all bookings with status Completed .
+SELECT * FROM c WHERE c.booking_status = "Completed"
+8. Display all Suite bookings.
+SELECT * FROM c WHERE c.room_type = "Suite"
+9. Display all bookings with room type Executive .
+SELECT * FROM c WHERE c.room_type = "Executive"
+
+Section C — Numeric Filters
+10. Display bookings where booking_amount is greater than 20000 .
+SELECT * FROM c WHERE c.booking_amount > 20000
+11. Display bookings where room_rate is greater than 6000 .
+SELECT * FROM c WHERE c.room_rate > 6000
+12. Display bookings where nights is greater than 3 .
+SELECT * FROM c WHERE c.nights > 3
+13. Display bookings where rating is below 4.2 .
+SELECT * FROM c WHERE c.rating < 4.2
+14. Display bookings where booking_amount is between 8000 and 25000 .
+SELECT * FROM c WHERE c.booking_amount >= 8000 AND c.booking_amount <= 25000
+15. Display bookings where room_rate is below 4000 .
+SELECT * FROM c WHERE c.room_rate < 4000
+
+Section D — AND Conditions
+16. Display bookings that are Confirmed and have a booking amount greater than 15000 .
+SELECT * FROM c WHERE c.booking_status = "Confirmed" AND c.booking_amount > 15000
+17. Display Mumbai bookings where the room type is Suite .
+SELECT * FROM c WHERE c.city = "Mumbai" AND c.room_type = "Suite"
+18. Display bookings where nights > 2 and rating > 4.5 .
+SELECT * FROM c WHERE c.nights > 2 AND c.rating > 4.5
+19. Display Completed bookings where booking_amount > 10000 .
+SELECT * FROM c WHERE c.booking_status = "Completed" AND c.booking_amount > 10000
+20. Display Standard rooms where room_rate < 3500 .
+SELECT * FROM c WHERE c.room_type = "Standard" AND c.room_rate < 3500
+
+Section E — OR Conditions
+21. Display bookings from Hyderabad or Bengaluru.
+SELECT * FROM c WHERE c.city = "Hyderabad" OR c.city = "Bengaluru"
+22. Display bookings from Mumbai or Delhi.
+SELECT * FROM c WHERE c.city = "Mumbai" OR c.city = "Delhi"   
+23. Display bookings where room type is Suite or Executive .
+SELECT * FROM c WHERE c.room_type = "Suite" OR c.room_type = "Executive"
+24. Display bookings whose status is Completed or Confirmed .
+SELECT * FROM c WHERE c.booking_status = "Completed" OR c.booking_status = "Confirmed"
+25. Display bookings from Chennai, Pune, or Kochi.
+SELECT * FROM c WHERE c.city IN ("Chennai", "Pune", "Kochi")   
+
+Section F — ORDER BY
+26. Display all bookings ordered by booking_amount from lowest to highest.
+SELECT * FROM c ORDER BY c.booking_amount ASC
+27. Display all bookings ordered by booking_amount from highest to lowest.
+SELECT * FROM c ORDER BY c.booking_amount DESC
+28. Display bookings ordered by rating from highest to lowest.
+SELECT * FROM c ORDER BY c.rating DESC
+29. Display bookings ordered by nights from highest to lowest.
+SELECT * FROM c ORDER BY c.nights DESC
+30. Display bookings ordered first by city and then by booking_amount . -IMPORTANT
+made this change in the indexing policy tab-
+{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/*"
+        }
+    ],
+    "excludedPaths": [
+        {
+            "path": "/\"_etag\"/?"
+        }
+    ],
+    "compositeIndexes": [
+        [
+            {
+                "path": "/city",
+                "order": "ascending"
+            },
+            {
+                "path": "/booking_amount",
+                "order": "ascending"
+            }
+        ]
+    ],
+    "fullTextIndexes": []
+}
+actual query: SELECT * FROM c ORDER BY c.city ASC, c.booking_amount ASC   
+
+Section G — COUNT
+31. Count the total number of bookings.
+SELECT COUNT(1) FROM c
+32. Count the number of Confirmed bookings.
+SELECT COUNT(1) FROM c WHERE c.booking_status = "Confirmed"
+33. Count the number of Completed bookings.
+SELECT COUNT(1) FROM c WHERE c.booking_status = "Completed"
+34. Count the number of Suite bookings.
+SELECT COUNT(1) FROM c WHERE c.room_type = "Suite"
+35. Count the number of bookings in Pune.
+SELECT COUNT(1) FROM c WHERE c.city = "Pune"
+
+Section H — GROUP BY
+36. Count bookings by city.
+SELECT c.city, COUNT(1) AS booking_count FROM c GROUP BY c.city
+37. Count bookings by room_type .
+SELECT c.room_type, COUNT(1) AS booking_count FROM c GROUP BY c.room_type
+38. Count bookings by booking_status .
+SELECT c.booking_status, COUNT(1) AS booking_count FROM c GROUP BY c.booking_status
+39. Find total booking amount for each city.
+SELECT c.city, SUM(c.booking_amount) AS total_amount FROM c GROUP BY c.city
+40. Find average booking amount for each room type.
+SELECT c.room_type, AVG(c.booking_amount) AS avg_amount FROM c GROUP BY c.room_type
+41. Find average rating for each city.
+SELECT c.city, AVG(c.rating) AS avg_rating FROM c GROUP BY c.city
+42. Find total nights booked for each city.
+SELECT c.city, SUM(c.nights) AS total_nights FROM c GROUP BY c.city
+43. Find average room rate for each room type.
+SELECT c.room_type, AVG(c.room_rate) AS avg_rate FROM c GROUP BY c.room_type
+
+Section I — GROUP BY with Filters
+44. Find total booking amount by city using only Confirmed bookings.
+SELECT c.city, SUM(c.booking_amount) AS total_amount FROM c WHERE c.booking_status = "Confirmed" GROUP BY c.city
+45. Count Completed bookings in each city.-imp
+SELECT c.city, COUNT(1) AS completed_count FROM c WHERE c.booking_status = "Completed" GROUP BY c.city
+46. Find average booking amount by city for bookings above 8000 .
+SELECT c.city, AVG(c.booking_amount) AS avg_amount FROM c WHERE c.booking_amount > 8000 GROUP BY c.city
+47. Find total nights grouped by room type.
+SELECT c.room_type, SUM(c.nights) AS total_nights FROM c GROUP BY c.room_type
+
+Section J — Combined Queries
+48. Find the top five bookings by booking_amount . -IMP
+SELECT TOP 5 * FROM c ORDER BY c.booking_amount DESC
+49. Find the top three bookings by rating .
+SELECT TOP 3 * FROM c ORDER BY c.rating DESC
+50. Display Confirmed Suite bookings ordered by booking_amount descending.
+SELECT * FROM c WHERE c.booking_status = "Confirmed" AND c.room_type = "Suite" ORDER BY c.booking_amount DESC
+51. Display bookings where booking_amount > 15000 and rating > 4.5 , ordered by
+booking amount descending.
+SELECT * FROM c WHERE c.booking_amount > 15000 AND c.rating > 4.5 ORDER BY c.booking_amount DESC
+52. Display Hyderabad or Bengaluru bookings where nights > 2 .
+SELECT * FROM c WHERE (c.city = "Hyderabad" OR c.city = "Bengaluru") AND c.nights > 2
+53. Display Cancelled bookings ordered by rating from lowest to highest.
+SELECT * FROM c WHERE c.booking_status = "Cancelled" ORDER BY c.rating ASC
+54. Display guest_name , city , hotel_name , booking_amount , and rating for bookings
+above 20000 .
+SELECT c.guest_name, c.city, c.hotel_name, c.booking_amount, c.rating FROM c WHERE c.booking_amount > 20000
+55. Display Executive room bookings where room_rate >= 6000 , ordered by room rate
+descending.
+SELECT * FROM c WHERE c.room_type = "Executive" AND c.room_rate >= 6000 ORDER BY c.room_rate DESC
+
+
+Section K — Business Questions
+56. Write a query to determine which city has the highest total booking amount.
+SELECT c.city, SUM(c.booking_amount) AS total_amount FROM c GROUP BY c.city 
+--ORDER BY total_amount DESC--
+57. Write a query to determine which booking has the highest booking amount.
+SELECT TOP 1 * FROM c ORDER BY c.booking_amount DESC
+58. Write a query to determine which booking has the highest rating.
+SELECT TOP 1 * FROM c ORDER BY c.rating DESC
+59. Write a query to determine which room type has the highest average booking amount.
+SELECT c.room_type, AVG(c.booking_amount) AS avg_amount FROM c GROUP BY c.room_type 
+--ORDER BY avg_amount DESC--
+60. Write a query to determine which city has the highest total number of nights booked.
+SELECT 1 c.city, SUM(c.nights) AS total_nights FROM c GROUP BY c.city --ORDER BY total_nights DESC--
+61. Write a query to determine how many bookings are currently Cancelled.
+SELECT VALUE COUNT(1) FROM c WHERE c.booking_status = "Cancelled"
+62. Write a query to determine which city has the highest number of Completed bookings.
+SELECT c.city, COUNT(1) AS completed_count FROM c WHERE c.booking_status = "Completed" GROUP BY c.city --ORDER BY completed_count DESC--
+63. Write a query to determine which hotel has the highest booking amount.
+SELECT TOP 1 c.hotel_name, c.booking_amount FROM c ORDER BY c.booking_amount DESC
+64. Write a query to determine which room type has the highest average room rate.
+SELECT c.room_type, AVG(c.room_rate) AS avg_rate FROM c GROUP BY c.room_type 
+--ORDER BY avg_rate DESC--
+65. Write a query to determine the total booking amount for all Confirmed bookings.
+SELECT SUM(c.booking_amount) AS total_confirmed_amount FROM c WHERE c.booking_status = "Confirmed"
+
+WEEK2 DAY 3 WEDNESDAY COSMOS DB SQL API ASSIGNMENT -1 
+DATA:
+Create
+
+Database: ev_network
+Container: charging_stations
+Partition Key: /city
+
+Data
+
+{
+"id": "CS001",
+"station_name": "VoltHub Central",
+"city": "Hyderabad",
+"zone": "Central",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 120,
+"daily_sessions": 46,
+"revenue": 18400,
+"uptime_percent": 98.5,
+"status": "Active"
+}
+
+{
+"id": "CS002",
+"station_name": "GreenCharge East",
+"city": "Hyderabad",
+"zone": "East",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 60,
+"daily_sessions": 31,
+"revenue": 9300,
+"uptime_percent": 96.2,
+
+"status": "Active"
+}
+
+{
+"id": "CS003",
+"station_name": "RapidVolt TechPark",
+"city": "Bengaluru",
+"zone": "East",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 150,
+"daily_sessions": 58,
+"revenue": 24700,
+"uptime_percent": 99.1,
+"status": "Active"
+}
+
+{
+"id": "CS004",
+"station_name": "UrbanPlug North",
+"city": "Bengaluru",
+"zone": "North",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 50,
+"daily_sessions": 26,
+"revenue": 7800,
+"uptime_percent": 94.8,
+"status": "Maintenance"
+}
+
+{
+"id": "CS005",
+"station_name": "ChargeBay Marina",
+"city": "Chennai",
+"zone": "South",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 100,
+"daily_sessions": 43,
+"revenue": 16500,
+"uptime_percent": 97.4,
+
+"status": "Active"
+}
+
+{
+"id": "CS006",
+"station_name": "EcoPlug OMR",
+"city": "Chennai",
+"zone": "East",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 40,
+"daily_sessions": 22,
+"revenue": 6400,
+"uptime_percent": 95.1,
+"status": "Active"
+}
+
+{
+"id": "CS007",
+"station_name": "PowerGrid Koregaon",
+"city": "Pune",
+"zone": "East",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 120,
+"daily_sessions": 39,
+"revenue": 15100,
+"uptime_percent": 98.0,
+"status": "Active"
+}
+
+{
+"id": "CS008",
+"station_name": "PlugPoint Hinjewadi",
+"city": "Pune",
+"zone": "West",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 60,
+"daily_sessions": 34,
+"revenue": 10200,
+"uptime_percent": 96.9,
+
+"status": "Active"
+}
+
+{
+"id": "CS009",
+"station_name": "MetroCharge Andheri",
+"city": "Mumbai",
+"zone": "West",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 180,
+"daily_sessions": 67,
+"revenue": 29600,
+"uptime_percent": 99.3,
+"status": "Active"
+}
+
+{
+"id": "CS010",
+"station_name": "Harbour EV Point",
+"city": "Mumbai",
+"zone": "South",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 50,
+"daily_sessions": 29,
+"revenue": 8700,
+"uptime_percent": 93.7,
+"status": "Maintenance"
+}
+
+{
+"id": "CS011",
+"station_name": "CapitalCharge Connaught",
+"city": "Delhi",
+"zone": "Central",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 150,
+"daily_sessions": 61,
+"revenue": 26100,
+"uptime_percent": 98.7,
+
+"status": "Active"
+}
+
+{
+"id": "CS012",
+"station_name": "NorthGrid Rohini",
+"city": "Delhi",
+"zone": "North",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 60,
+"daily_sessions": 33,
+"revenue": 9900,
+"uptime_percent": 95.8,
+"status": "Active"
+}
+
+{
+"id": "CS013",
+"station_name": "PinkCity Charge",
+"city": "Jaipur",
+"zone": "Central",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 100,
+"daily_sessions": 35,
+"revenue": 13300,
+"uptime_percent": 97.1,
+"status": "Active"
+}
+
+{
+"id": "CS014",
+"station_name": "DesertPlug West",
+"city": "Jaipur",
+"zone": "West",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 40,
+"daily_sessions": 18,
+"revenue": 5100,
+"uptime_percent": 92.5,
+
+"status": "Maintenance"
+}
+
+{
+"id": "CS015",
+"station_name": "LakeCity EV Hub",
+"city": "Bhopal",
+"zone": "Central",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 90,
+"daily_sessions": 32,
+"revenue": 11800,
+"uptime_percent": 96.7,
+"status": "Active"
+}
+
+{
+"id": "CS016",
+"station_name": "SmartPlug Arera",
+"city": "Bhopal",
+"zone": "South",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 45,
+"daily_sessions": 21,
+"revenue": 5900,
+"uptime_percent": 94.3,
+"status": "Active"
+}
+
+{
+"id": "CS017",
+"station_name": "CoastalCharge Panampilly",
+"city": "Kochi",
+"zone": "South",
+"station_type": "Fast",
+"connector_type": "CCS2",
+"capacity_kw": 110,
+"daily_sessions": 38,
+"revenue": 14600,
+"uptime_percent": 98.2,
+
+"status": "Active"
+}
+
+{
+"id": "CS018",
+"station_name": "Backwater Plug",
+"city": "Kochi",
+"zone": "North",
+"station_type": "Standard",
+"connector_type": "Type2",
+"capacity_kw": 50,
+"daily_sessions": 24,
+"revenue": 7200,
+"uptime_percent": 95.4,
+"status": "Active"
+}
+
+Section A — Basic SELECT
+1. Display all documents in the container.
+SELECT * FROM c
+2. Display only station_name , city , and status .
+SELECT c.station_name, c.city , c.status from c
+3. Display station_name , capacity_kw , daily_sessions , and revenue .
+SELECT c.station_name, c.capacity_kw , c.daily_sessions , c.revenue from c
+4. Display id and station_name for every station.
+SELECT c.station_name, c.id from c
+
+Section B — WHERE Filters
+5. Display all stations in Hyderabad.
+
+6. Display all stations in Mumbai.
+7. Display all stations whose status is Maintenance .
+SELECT * FROM c WHERE c.status = "Maintenance"
+8. Display all Fast charging stations.
+SELECT * FROM c WHERE c.station_type = "Fast"
+9. Display all stations whose connector type is CCS2 .
+SELECT * FROM c WHERE c.connector_type = "CCS2"
+
+Section C — Numeric Filters
+10. Display stations whose capacity is greater than 100 .
+SELECT * FROM c WHERE c.capacity_kw > 100
+11. Display stations whose revenue is greater than 15000 .
+SELECT * FROM c WHERE c.revenue > 15000
+12. Display stations having more than 40 daily sessions.
+SELECT * FROM c WHERE c.daily_sessions > 40
+13. Display stations whose uptime is below 96 .
+SELECT * FROM c WHERE c.uptime_percent < 96
+14. Display stations whose capacity is between 50 and 120 .
+SELECT * FROM c WHERE c.capacity_kw >= 50 AND c.capacity_kw <= 120
+15. Display stations whose revenue is below 10000 .
+SELECT * FROM c WHERE c.revenue < 10000
+
+Section D — AND Conditions
+16. Display stations that are Fast and Active .
+SELECT * FROM c WHERE c.station_type = 'Fast' AND c.status = 'Active'
+17. Display Hyderabad stations whose revenue is above 10000 .
+SELECT c.station_name FROM c WHERE c.city = 'Hyderabad' AND c.revenue > 10000
+18. Display stations whose capacity is greater than 100 and daily sessions are greater than 40 .
+SELECT * FROM c WHERE c.capacity_kw > 100 AND c.daily_sessions > 40
+19. Display Active stations whose uptime is greater than 97 .
+SELECT * FROM c WHERE c.status = "Active" AND c.uptime_percent > 97
+20. Display Standard stations whose revenue is below 10000 .
+SELECT * FROM c WHERE c.station_type = "Standard" AND c.revenue < 10000
+Section E — OR Conditions
+21. Display stations located in Hyderabad or Bengaluru.
+SELECT * FROM c WHERE c.city = "Hyderabad" OR c.city = "Bengaluru"
+22. Display stations whose zone is North or South.
+SELECT * FROM c WHERE c.zone = "North" OR c.zone = "South"
+23. Display stations that are Fast or have revenue above 20000 .
+SELECT * FROM c WHERE c.station_type = "Fast" OR c.revenue > 20000
+24. Display stations located in Mumbai, Delhi, or Chennai.
+SELECT * FROM c WHERE c.city IN ("Mumbai", "Delhi", "Chennai")
+
+Section F — ORDER BY
+25. Display all stations ordered by revenue from lowest to highest.
+SELECT * FROM c ORDER BY c.revenue ASC
+26. Display all stations ordered by revenue from highest to lowest.
+SELECT * FROM c ORDER BY c.revenue DESC
+27. Display stations ordered by daily sessions from highest to lowest.
+SELECT * FROM c ORDER BY c.daily_sessions DESC
+28. Display stations ordered by uptime percentage from lowest to highest.
+SELECT * FROM c ORDER BY c.uptime_percent ASC
+29. Display stations ordered first by city and then by revenue.
+SELECT * FROM c ORDER BY c.city ASC, c.revenue ASC
+Section G — COUNT
+30. Count the total number of charging stations.
+SELECT VALUE COUNT(1) FROM c
+31. Count the number of Active stations.
+SELECT VALUE COUNT(1) FROM c WHERE c.status = "Active"
+32. Count the number of Fast stations.
+SELECT VALUE COUNT(1) FROM c WHERE c.station_type = "Fast"
+33. Count the number of stations in Pune.
+SELECT VALUE COUNT(1) FROM c WHERE c.city = "Pune"
+34. Count the number of stations whose revenue is greater than 15000 .
+SELECT VALUE COUNT(1) FROM c WHERE c.revenue > 15000
+
+Section H — GROUP BY
+35. Count the number of stations in each city.
+SELECT c.city, COUNT(1) AS TotalStations 
+FROM c 
+GROUP BY c.city
+36. Count the number of stations by station_type .
+SELECT c.station_type, COUNT(1) AS TotalStations 
+FROM c 
+GROUP BY c.station_type
+37. Count the number of stations by status .
+SELECT c.status, COUNT(1) AS TotalStations 
+FROM c 
+GROUP BY c.status
+38. Find the total revenue for each city.
+SELECT c.city, SUM(c.revenue) AS TotalRevenue 
+FROM c 
+GROUP BY c.city
+39. Find the average revenue for each station type.
+SELECT c.station_type, AVG(c.revenue) AS AvgRevenue 
+FROM c 
+GROUP BY c.station_type
+40. Find the average uptime percentage for each city.
+SELECT c.city, AVG(c.uptime_percent) AS AvgUptime 
+FROM c 
+GROUP BY c.city
+41. Find the total number of daily sessions for each city.
+SELECT c.city, SUM(c.daily_sessions) AS TotalSessions 
+FROM c 
+GROUP BY c.city
+42. Find the average charging capacity for each station type.
+SELECT c.station_type, AVG(c.capacity_kw) AS AvgCapacity 
+FROM c 
+GROUP BY c.station_type
+
+Section I — GROUP BY with Filters
+43. Find total revenue by city using only Active stations.
+SELECT c.city, SUM(c.revenue) AS TotalRevenue 
+FROM c 
+WHERE c.status = "Active" 
+GROUP BY c.city
+--checking comments --
+44. Count Fast stations in each city.
+SELECT c.city, COUNT(1) AS FastStationCount 
+FROM c 
+WHERE c.station_type = "Fast" 
+GROUP BY c.city
+45. Find average revenue by city for stations whose revenue is above 8000 .
+SELECT c.city, AVG(c.revenue) AS AvgRevenue 
+FROM c 
+WHERE c.revenue > 8000 
+GROUP BY c.city
+46. Find total daily sessions grouped by station type.
+SELECT c.station_type, SUM(c.daily_sessions) AS TotalSessions 
+FROM c 
+GROUP BY c.station_type
+
+Section J — Combined Queries
+47. Find the top five stations based on revenue.
+SELECT TOP 5 c.station_name, c.revenue 
+FROM c 
+ORDER BY c.revenue DESC
+48. Find the top three stations based on daily sessions.
+SELECT TOP 3 c.station_name, c.daily_sessions 
+FROM c 
+ORDER BY c.daily_sessions DESC
+49. Display Active Fast stations ordered by revenue from highest to lowest.
+SELECT * 
+FROM c 
+WHERE c.status = "Active" AND c.station_type = "Fast" 
+ORDER BY c.revenue DESC
+50. Display stations whose revenue is greater than 12000 and uptime is greater than 97 , ordered
+by revenue from highest to lowest.
+SELECT * 
+FROM c 
+WHERE c.revenue > 12000 AND c.uptime_percent > 97 
+ORDER BY c.revenue DESC
+51. Display Hyderabad or Bengaluru stations having more than 30 daily sessions.
+SELECT * 
+FROM c 
+WHERE (c.city = "Hyderabad" OR c.city = "Bengaluru") AND c.daily_sessions > 30
+52. Display Maintenance stations ordered by uptime percentage from lowest to highest.
+SELECT * 
+FROM c 
+WHERE c.status = "Maintenance" 
+ORDER BY c.uptime_percent ASC
+53. Display station_name , city , revenue , and uptime_percent for stations whose
+revenue is greater than 15000 .
+SELECT c.station_name, c.city, c.revenue, c.uptime_percent 
+FROM c 
+WHERE c.revenue > 15000
+54. Display Fast stations having a capacity of at least 120 , ordered by capacity from highest to
+lowest.
+SELECT * 
+FROM c 
+WHERE c.station_type = "Fast" AND c.capacity_kw >= 120 
+ORDER BY c.capacity_kw DESC
+
+Section K — Business Questions
+55. Write a query to determine which city has the highest total revenue.-DOUBT
+SELECT TOP 1 c.city, SUM(c.revenue) AS TotalRevenue 
+FROM c 
+GROUP BY c.city 
+ORDER BY TotalRevenue DESC
+temp solution-"SELECT c.city, SUM(c.revenue) AS TotalRevenue 
+FROM c 
+GROUP BY c.city 
+--ORDER BY TotalRevenue DESC--"
+56. Write a query to determine which station has the highest revenue.
+SELECT TOP 1 c.station_name, c.revenue 
+FROM c 
+ORDER BY c.revenue DESC
+57. Write a query to determine which station has the lowest uptime percentage.
+SELECT TOP 1 c.station_name, c.uptime_percent 
+FROM c 
+ORDER BY c.uptime_percent ASC
+58. Write a query to determine which station type has the highest average revenue-DOUBT
+SELECT TOP 1 c.station_type, AVG(c.revenue) AS AvgRevenue 
+FROM c 
+GROUP BY c.station_type 
+--ORDER BY AvgRevenue DESC--
+59. Write a query to determine which city has the highest total number of daily charging sessions.-DOUBT
+SELECT TOP 1 c.city, SUM(c.daily_sessions) AS TotalSessions 
+FROM c 
+GROUP BY c.city 
+--ORDER BY TotalSessions DESC--
+60. Write a query to determine how many stations are currently under maintenance.
+SELECT VALUE COUNT(1) FROM c WHERE c.status = "Maintenance"

@@ -1,0 +1,234 @@
+structured_data.csv
+
+Shipment_ID,Origin,Destination,Mode,Weight_Kg,Distance_Km,Delivery_Days,Cost
+S1001,Ahmedabad,Surat,Road,120,265,1,4200
+S1002,Pune,Nashik,Road,85,210,1,3100
+S1003,Chennai,Kochi,Rail,300,690,2,7800
+S1004,Delhi,Jaipur,Road,150,280,1,4600
+S1005,Bengaluru,Hyderabad,Rail,420,575,2,9200
+S1006,Indore,Bhopal,Road,95,190,1,2900
+S1007,Mumbai,Goa,Air,60,590,1,11500
+S1008,Patna,Ranchi,Road,110,330,2,3900
+S1009,Kolkata,Bhubaneswar,Rail,250,440,2,6800
+S1010,Hyderabad,Vijayawada,Road,180,275,1,5100
+import pandas as pd
+# 1. Load the CSV into a DataFrame.
+df = pd.read_csv('structured_data.csv')
+print(df)
+
+# 2. Display only:
+
+# Shipment_ID
+# Origin
+# Destination
+# Cost
+print(df[["Shipment_ID", "Origin", "Destination", "Cost"]])
+# 3. Show all shipments where Mode is Road .
+print(df[df["Mode"] == "Road"])
+# 4. Show shipments with Weight_Kg greater than 150.
+print(df[df["Weight_Kg"] > 150])
+# 5. Create a new column:
+# Cost_Per_Km = Cost / Distance_Km
+df["Cost_Per_Km"] = df["Cost"]/df["Distance_Km"]
+print(df["Cost_Per_Km"] )
+print(df)
+
+# 6. Find:
+# average shipment cost
+# highest shipment cost
+# lowest shipment cost
+print(df["Cost"].mean())
+print(df["Cost"].max())
+print(df["Cost"].min())
+
+# 7. Group by Mode and calculate total cost.
+print(df.groupby("Mode")["Cost"].sum())
+# 8. Group by Mode and calculate average weight.
+print(df.groupby("Mode")["Weight_Kg"].mean())
+# 9. Sort shipments from highest to lowest cost.
+print(df.sort_values(by = "Cost", ascending= False))
+# 10. Display shipments where: display table values whwre Delivery_Days <= 1, and Cost < 5000)
+print(df[(df["Delivery_Days"] <= 1 ) & (df["Cost"] < 5000)])
+--------------------------------------------------
+
+semi_structured_data.json
+data:
+[
+  {
+    "incident_id": "INC201",
+    "location": {
+      "city": "Pune",
+      "site": "Warehouse A"
+    },
+    "severity": "High",
+    "category": "Equipment",
+    "reported_by": "Supervisor",
+    "actions": ["Machine stopped", "Area isolated"]
+  },
+  {
+    "incident_id": "INC202",
+    "location": {
+      "city": "Nagpur",
+      "site": "Distribution Hub"
+    },
+    "severity": "Medium",
+    "category": "Safety",
+    "reported_by": "Technician"
+  },
+  {
+    "incident_id": "INC203",
+    "location": {
+      "city": "Chennai",
+      "site": "Plant 2"
+    },
+    "severity": "Low",
+    "category": "Maintenance",
+    "reported_by": "Engineer",
+    "actions": ["Inspection scheduled"]
+  },
+  {
+    "incident_id": "INC204",
+    "location": {
+      "city": "Vadodara",
+      "site": "Plant 1"
+    },
+    "severity": "High",
+    "category": "Safety",
+    "reported_by": "Manager",
+    "actions": ["Operations paused", "Safety team alerted"]
+  },
+  {
+    "incident_id": "INC205",
+    "location": {
+      "city": "Mysuru",
+      "site": "Warehouse C"
+    },
+    "severity": "Medium",
+    "category": "Equipment",
+    "reported_by": "Operator"
+  }
+]
+import pandas as pd
+import json
+import numpy as np
+import seaborn as sns
+import sqlite3
+import matplotlib.pyplot as plt
+import counter
+
+
+# 1. Load the JSON file using Python.
+with open("semi_structured_data.json") as file:
+    data = json.load(file)
+print(data)
+# 2. Print all incident IDs.
+for incident in data:
+    print(incident["incident_id"])
+# 3. Print the city of each incident.
+for incident in data:
+    print(incident["location"]["city"])
+# 4. Display incidents where severity is High .
+for incident in data:
+    if incident["severity"] == "High":
+        print(incident)
+# 5. Display incidents where category is Safety .
+for incident in data:
+    if incident["category"] == "Safety":
+        print(incident)
+# 6. Some incidents do not contain actions . Print:
+#
+# No actions recorded
+# when the field is missing.
+for incident in data:
+    if "actions" in incident:
+        print(f"{incident['incident_id']}: {incident['actions']}")
+    else:
+        print(f"{incident['incident_id']}: No actions recorded")
+# 7. Count how many incidents belong to each severity level.
+print("\n--- 7. Severity Level Counts ---")
+severities = [incident["severity"] for incident in data]
+counts = counter.Counter(severities)
+for severity, count in counts.items():
+    print(f"{severity}: {count}")
+
+# 8. Add a new field: status = "Open" to every incident
+for incident in data:
+    incident["status"] = "Open"
+print("Status assigned successfully.")
+
+# 9. Save the updated records to: updated_incidents.json
+with open("updated_incidents.json", "w") as file:
+    json.dump(data, file, indent=4)
+print("q9 Saved updated JSON to updated_incidents.json ")
+
+# 10. Convert JSON into a Pandas DataFrame using pd.json_normalize()
+df_json = pd.json_normalize(data)
+columns_to_show = ["incident_id", "severity", "category", "location.city", "location.site"]
+print(df_json[columns_to_show])
+-------------------------------------
+unstructured_data.txt
+During the morning inspection, the operations team noticed an unusual sound coming from Conveyor Line 4.
+
+The maintenance team was informed immediately and the conveyor was temporarily stopped.
+
+A technician found that one of the rollers was damaged and required replacement.
+
+The nearby loading area remained operational, although movement was slower than usual.
+
+Later in the afternoon, the damaged roller was replaced and the conveyor was tested successfully.
+
+The team reported that normal operations resumed at 4:30 PM.
+
+No injuries were reported during the incident.
+
+A follow-up inspection has been scheduled for next week.
+# 1. Read and print the complete text file
+with open("unstructured_data.txt", "r") as file:
+    lines = file.readlines()
+
+complete_text = "".join(lines)
+print(complete_text)
+
+# 2. Count the total number of words
+words = complete_text.split()
+print(f"Total Words: {len(words)}")
+
+# 3. Count the total number of lines
+print(f"Total Lines: {len(lines)}")
+
+# 4. Check whether the word: 'maintenance' appears in the report
+has_maintenance = "maintenance" in complete_text.lower()
+print(f"Does 'maintenance' appear? {has_maintenance}")
+
+# 5. Count how many times the word: 'conveyor' appears
+conveyor_count = complete_text.lower().count("conveyor")
+print(f"'conveyor' appears {conveyor_count} times.")
+
+# 6. Print only lines containing: 'team'
+for line in lines:
+    if "team" in line.lower():
+        print(line.strip())
+
+# 7. Print only lines containing: 'incident'
+for line in lines:
+    if "incident" in line.lower():
+        print(line.strip())
+
+# 8. Find and print the sentence that mentions the damaged component
+for line in lines:
+    if "damaged" in line.lower():
+        print(line.strip())
+
+# 9. Convert the complete text to lowercase and save it as: lowercase_report.txt
+lowercase_text = complete_text.lower()
+with open("lowercase_report.txt", "w") as out_file:
+    out_file.write(lowercase_text)
+print(" q9 Saved lowercase report to lowercase_report.txt")
+
+# 10. Create a simple summary showing whether these keywords appear
+keywords = ["maintenance", "injuries", "inspection", "replacement", "operations"]
+for kw in keywords:
+    status = "Found" if kw in complete_text.lower() else "Not Found"
+    print(f"{kw} : {status}")
+
+
