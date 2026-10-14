@@ -1,0 +1,283 @@
+WEEK 2 DAY 1 Assignment
+https://drive.google.com/file/d/1erYAeIV9JrnJrJqJgy1O4-0f5SxEEdWs/view?usp=sharing Assignment (1st half)
+TABLE guests (
+guest_id INT PRIMARY KEY,
+guest_name VARCHAR(100),
+city VARCHAR(50),
+membership_level VARCHAR(20)
+);
+
+CREATE TABLE rooms (
+room_id INT PRIMARY KEY,
+room_type VARCHAR(50),
+price_per_night DECIMAL(10,2),
+floor_number INT,
+status VARCHAR(20)
+);
+
+CREATE TABLE bookings (
+booking_id INT PRIMARY KEY,
+guest_id INT,
+room_id INT,
+check_in_date DATE,
+
+check_out_date DATE,
+booking_status VARCHAR(30),
+FOREIGN KEY (guest_id)
+REFERENCES guests(guest_id),
+FOREIGN KEY (room_id)
+REFERENCES rooms(room_id)
+);
+
+CREATE TABLE services (
+service_id INT PRIMARY KEY,
+service_name VARCHAR(100),
+service_price DECIMAL(10,2)
+);
+
+CREATE TABLE booking_services (
+booking_service_id INT PRIMARY KEY,
+booking_id INT,
+service_id INT,
+quantity INT,
+FOREIGN KEY (booking_id)
+REFERENCES bookings(booking_id),
+FOREIGN KEY (service_id)
+REFERENCES services(service_id)
+
+
+1. Display all records from the guests table.
+select * from guests;
+2. Display only guest_name , city , and membership_level .
+SELECT guest_name, city, membership_level FROM guests;
+3. Display all rooms whose price per night is greater than ?5,000.
+SELECT * FROM rooms WHERE price_per_night > 5000;
+4. Display all rooms whose status is Available .
+SELECT * FROM rooms WHERE status = 'Available';
+5. Find all guests belonging to the Gold membership level.
+select guest_name from guests
+where membership_level = 'Gold';
+6. Display bookings whose status is Confirmed .
+select * from bookings
+where booking_status = 'Confirmed';
+7. Display bookings sorted by check_in_date .
+select * from bookings
+order by check_in_date ASC ;
+8. Display rooms sorted from highest to lowest price_per_night .
+select * from rooms
+order by price_per_night DESC ;
+
+9. Find rooms priced between ?4,000 and ?8,000.
+select * from rooms
+where price_per_night between 4000 and 8000;
+10. Find guests from either Hyderabad , Pune , or Mumbai .
+select * from guests
+where city in ('Hyderabad', 'Pune', 'Mumbai');
+11. Count the total number of rooms.
+select count(*) as total_rooms from rooms;
+12. Find the average room price.
+select avg(price_per_night) as average_room_price from rooms;
+13. Find the most expensive room price.
+select max(price_per_night) as max_room_price from rooms;
+14. Find the cheapest room price.
+select min(price_per_night) as min_room_price from rooms;
+15. Count how many rooms exist for each room_type .
+select room_type, count(*) as room_count from rooms group by room_type;
+
+16 Find the average room price for each room type.
+select room_type, avg(price_per_night) as average_price from rooms group by room_type;
+17. Count how many guests belong to each membership level.
+select membership_level, count(*) from guests group by membership_level;
+18. Count the number of bookings for each booking status.
+select booking_status, count(*) from bookings group by booking_status;
+19. Find the total value of all services in the services table.
+SELECT SUM(service_price) AS total_services_value FROM services;
+20. Find the average service price.
+SELECT AVG(service_price) AS average_service_price FROM services;
+JOIN Assignments
+
+21. Guest + Booking
+
+Display:
+
+booking_id
+guest_name
+city
+check_in_date
+
+check_out_date
+booking_status
+
+Use guests and bookings .
+SELECT b.booking_id, g.guest_name, g.city, b.check_in_date, b.check_out_date, b.booking_status
+FROM guests g
+INNER JOIN bookings b ON g.guest_id = b.guest_id;
+22. Booking + Room
+
+Display:
+
+booking_id
+room_type
+price_per_night
+check_in_date
+check_out_date
+SELECT b.booking_id, r.room_type, r.price_per_night, b.check_in_date, b.check_out_date FROM bookings b
+INNER JOIN rooms r ON b.room_id = r.room_id;
+23. Guest + Booking + Room
+
+Display:
+
+guest_name
+room_type
+price_per_night
+booking_status
+
+Use three tables.
+SELECT g.guest_name, r.room_type, r.price_per_night, b.booking_status
+FROM bookings b
+INNER JOIN guests g ON b.guest_id = g.guest_id
+INNER JOIN rooms r ON b.room_id = r.room_id;
+24. Booking + Service
+
+Display:
+
+booking_id
+service_name
+quantity
+service_price
+
+Use:
+
+bookings
+booking_services
+services
+SELECT bs.booking_id, s.service_name, bs.quantity, s.service_price
+FROM booking_services bs
+INNER JOIN bookings b ON bs.booking_id = b.booking_id
+INNER JOIN services s ON bs.service_id = s.service_id;
+25. Calculate Service Cost
+SELECT bs.booking_id, s.service_name, bs.quantity, s.service_price, 
+       (bs.quantity * s.service_price) AS service_cost
+FROM booking_services bs
+INNER JOIN services s ON bs.service_id = s.service_id;
+For every service used in a booking, calculate:
+
+service cost = quantity × service_price
+
+Display:
+
+booking_id
+service_name
+quantity
+service_price
+service_cost
+
+26. Complete Booking Details
+
+Join:
+
+guests
+bookings
+rooms
+booking_services
+services
+
+Display:
+
+guest_name
+booking_id
+room_type
+service_name
+quantity
+booking_status
+SELECT g.guest_name, b.booking_id, r.room_type, s.service_name, bs.quantity, b.booking_status
+FROM bookings b
+INNER JOIN guests g ON b.guest_id = g.guest_id
+INNER JOIN rooms r ON b.room_id = r.room_id
+INNER JOIN booking_services bs ON b.booking_id = bs.booking_id
+INNER JOIN services s ON bs.service_id = s.service_id;
+
+LEFT JOIN Assignments
+
+27. Find all guests and their bookings
+
+Display every guest, including guests who have never made a booking.
+Output:
+
+guest_name
+booking_id
+booking_status
+
+Use a LEFT JOIN .
+SELECT g.guest_name, b.booking_id, b.booking_status
+FROM guests g
+LEFT JOIN bookings b ON g.guest_id = b.guest_id;
+
+28. Find guests without bookings
+Using a LEFT JOIN , display only guests who have never booked a room.
+Expected columns:
+
+guest_id
+guest_name
+city
+SELECT g.guest_id, g.guest_name, g.city
+FROM guests g
+LEFT JOIN bookings b ON g.guest_id = b.guest_id
+WHERE b.booking_id IS NULL;
+
+
+Business Query Assignments
+
+29. Total bookings per guest
+
+Display:
+
+guest_name
+total_bookings
+
+Include guests with zero bookings.
+SELECT g.guest_name, COUNT(b.booking_id) AS total_bookings
+FROM guests g
+LEFT JOIN bookings b ON g.guest_id = b.guest_id
+GROUP BY g.guest_id, g.guest_name;
+
+
+30. Total service spending per booking
+
+Calculate:
+
+SUM(quantity × service_price)
+
+Display:
+booking_id
+guest_name
+total_service_cost
+Sort from highest service spending to lowest.
+SELECT b.booking_id, g.guest_name, SUM(bs.quantity * s.service_price) AS total_service_cost
+FROM bookings b
+INNER JOIN guests g ON b.guest_id = g.guest_id
+INNER JOIN booking_services bs ON b.booking_id = bs.booking_id
+INNER JOIN services s ON bs.service_id = s.service_id
+GROUP BY b.booking_id, g.guest_name
+ORDER BY total_service_cost DESC;
+
+
+What this assessment covers
+
+SELECT
+WHERE
+BETWEEN
+IN
+ORDER BY
+COUNT
+SUM
+AVG
+MIN
+MAX
+GROUP BY
+
+INNER JOIN
+LEFT JOIN
+Multi-table JOIN
+Calculated columns
+Aggregation across JOINs
