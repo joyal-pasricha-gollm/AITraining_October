@@ -1,0 +1,34 @@
+[
+  {
+    "registration_id": "R101",
+    "name": "Meera Das",
+    "email": "meera@example.com",
+    "age": 28,
+    "ticket_type": "Premium",
+    "amount": 2500
+  },
+  {
+    "registration_id": "R102",
+    "name": "Joel Mathew",
+    "email": "joel@example.com",
+    "age": 17,
+    "ticket_type": "Standard",
+    "amount": 1200
+  },
+  {
+    "registration_id": "R103",
+    "name": "Kavya Rao",
+    "email": "invalid-email",
+    "age": 32,
+    "ticket_type": "VIP",
+    "amount": -500
+  },
+  {
+    "registration_id": "R104",
+    "name": "Feroz Ali",
+    "email": "feroz@example.com",
+    "age": 41,
+    "ticket_type": "Standard",
+    "amount": 1200
+  }
+]
