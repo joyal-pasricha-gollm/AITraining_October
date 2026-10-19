@@ -1,0 +1,58 @@
+[
+  {
+    "event_id": "EVT501",
+    "asset": {
+      "type": "Cooling Unit",
+      "site": "Plant Orion"
+    },
+    "severity": "High",
+    "temperature": 89,
+    "actions": [
+      "Shutdown initiated",
+      "Technician notified"
+    ]
+  },
+  {
+    "event_id": "EVT502",
+    "asset": {
+      "type": "Conveyor",
+      "site": "Plant Vega"
+    },
+    "severity": "Medium",
+    "temperature": 63
+  },
+  {
+    "event_id": "EVT503",
+    "asset": {
+      "type": "Packaging Robot",
+      "site": "Plant Orion"
+    },
+    "severity": "Low",
+    "temperature": 48,
+    "actions": [
+      "Inspection scheduled"
+    ]
+  },
+  {
+    "event_id": "EVT504",
+    "asset": {
+      "type": "Cooling Unit",
+      "site": "Plant Nova"
+    },
+    "severity": "High",
+    "temperature": 92,
+    "actions": [
+      "Area isolated",
+      "Replacement part requested"
+    ]
+  },
+  {
+    "event_id": "EVT505",
+    "asset": {
+      "type": "Conveyor",
+      "site": "Plant Vega"
+    },
+    "severity": "Medium",
+    "temperature": 68
+  }
+]

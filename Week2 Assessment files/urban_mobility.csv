@@ -1,0 +1,11 @@
+Trip_ID,Zone,Vehicle_Type,Distance_Km,Duration_Min,Energy_Used_kWh,Trips_Count,Maintenance_Flag
+TR001,North,Electric Van,86,120,22.5,3,No
+TR002,South,Electric Bike,32,75,6.2,6,No
+TR003,East,Electric Van,104,145,28.0,4,Yes
+TR004,West,Electric Scooter,18,42,3.8,9,No
+TR005,North,Electric Bike,41,88,7.5,7,No
+TR006,South,Electric Van,97,132,25.2,3,Yes
+TR007,East,Electric Scooter,24,50,4.1,8,No
+TR008,West,Electric Bike,53,96,9.4,5,No
+TR009,North,Electric Van,112,155,30.1,4,Yes
+TR010,South,Electric Scooter,27,56,4.9,10,No
