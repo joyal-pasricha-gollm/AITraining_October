@@ -1,0 +1,9 @@
+alembic
+email-validator
+fastapi[standard]
+psycopg[binary]
+pydantic-settings
+pwdlib[argon2]
+PyJWT
+python-dotenv
+SQLAlchemy
