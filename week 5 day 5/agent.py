@@ -32,7 +32,7 @@ SYSTEM_PROMPT = (
 
 
 def build_agent():
-    """Create the LangChain agent with in-memory conversation checkpoints."""
+    """Create the configured chat agent with in-memory checkpoints."""
     load_dotenv(Path(__file__).with_name(".env"), override=False)
     api_key = os.getenv("OPENAI_API_KEY", "").strip()
     if not api_key or api_key.casefold().startswith("replace_with_"):
@@ -40,10 +40,24 @@ def build_agent():
             "OPENAI_API_KEY is missing. Add your key to the project .env file."
         )
 
-    model = ChatOpenAI(
-        model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
-        temperature=0,
-    )
+    is_openrouter = api_key.startswith("sk-or-")
+    model_name = os.getenv("OPENAI_MODEL", "").strip()
+    if not model_name:
+        model_name = "openai/gpt-4o-mini" if is_openrouter else "gpt-4o-mini"
+    elif is_openrouter and model_name == "gpt-4o-mini":
+        model_name = "openai/gpt-4o-mini"
+
+    model_options = {
+        "model": model_name,
+        "temperature": 0,
+    }
+    base_url = os.getenv("OPENAI_BASE_URL", "").strip()
+    if base_url:
+        model_options["base_url"] = base_url
+    elif is_openrouter:
+        model_options["base_url"] = "https://openrouter.ai/api/v1"
+
+    model = ChatOpenAI(**model_options)
     return create_agent(
         model=model,
         tools=[search_restaurants, calculate_dining_cost],
@@ -104,9 +118,10 @@ def main() -> None:
             )
         except OpenAIAuthenticationError:
             print(
-                "OpenAI rejected the API key (401). Check that .env contains a "
-                "valid OpenAI API key, and that no OPENAI_API_KEY environment "
-                "variable is overriding it. Do not share your key."
+                "The model provider rejected the API key (401). Check the "
+                "provider, key, model, and API endpoint in .env, and make sure "
+                "an environment variable is not overriding them. Do not share "
+                "your key."
             )
             continue
         except Exception:

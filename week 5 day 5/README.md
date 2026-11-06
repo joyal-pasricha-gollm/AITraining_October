@@ -16,14 +16,20 @@ py -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-Open `.env` and replace `replace_with_your_openai_api_key` with your OpenAI API
-key. Keep the key private. `OPENAI_MODEL` defaults to `gpt-4o-mini`.
-Use an API key from the OpenAI API platform; ChatGPT subscriptions and keys
-from other providers do not authenticate with the default OpenAI endpoint.
-If the agent reports a 401 authentication error, create/check an active OpenAI
-API key and make sure a `OPENAI_API_KEY` environment variable is not overriding
-the `.env` value (`.env` is loaded without overriding existing environment
-variables).
+Open `.env` and replace `replace_with_your_openai_api_key` with your provider's
+API key. Keep the key private. OpenAI API keys use the default OpenAI endpoint
+and `gpt-4o-mini` model.
+
+OpenRouter keys (`sk-or-...`) are detected automatically and use the OpenRouter
+API endpoint. For OpenRouter, `gpt-4o-mini` is mapped to the OpenRouter model
+ID `openai/gpt-4o-mini`. To select another OpenRouter model or explicitly set
+the endpoint, configure `OPENAI_BASE_URL=https://openrouter.ai/api/v1` and set
+`OPENAI_MODEL` to a model ID available from OpenRouter.
+
+If authentication fails, check the key, provider endpoint, and model, and make
+sure an `OPENAI_API_KEY`, `OPENAI_BASE_URL`, or `OPENAI_MODEL` environment
+variable is not overriding the `.env` setting. `.env` is loaded without
+overriding existing environment variables.
 
 ## 2. Run the agent
 

@@ -18,6 +18,41 @@ from tools import calculate_dining_cost, get_restaurants, search_restaurants
 
 
 class RestaurantToolTests(unittest.TestCase):
+    def test_openrouter_key_selects_openrouter_endpoint_and_model(self) -> None:
+        with (
+            patch.dict(
+                os.environ,
+                {
+                    "OPENAI_API_KEY": "sk-or-v1-test",
+                    "OPENAI_MODEL": "gpt-4o-mini",
+                },
+                clear=True,
+            ),
+            patch("agent.ChatOpenAI") as chat,
+            patch("agent.create_agent", return_value="agent"),
+        ):
+            build_agent()
+
+        chat.assert_called_once_with(
+            model="openai/gpt-4o-mini",
+            temperature=0,
+            base_url="https://openrouter.ai/api/v1",
+        )
+
+    def test_openai_key_keeps_default_openai_configuration(self) -> None:
+        with (
+            patch.dict(
+                os.environ,
+                {"OPENAI_API_KEY": "sk-test-placeholder"},
+                clear=True,
+            ),
+            patch("agent.ChatOpenAI") as chat,
+            patch("agent.create_agent", return_value="agent"),
+        ):
+            build_agent()
+
+        chat.assert_called_once_with(model="gpt-4o-mini", temperature=0)
+
     def test_authentication_error_is_reported_without_traceback(self) -> None:
         response = httpx.Response(
             401,
@@ -40,7 +75,7 @@ class RestaurantToolTests(unittest.TestCase):
         ):
             main()
 
-        self.assertIn("OpenAI rejected the API key (401)", output.getvalue())
+        self.assertIn("model provider rejected the API key (401)", output.getvalue())
         self.assertNotIn("Traceback", output.getvalue())
 
     def test_agent_builds_without_making_an_api_request(self) -> None:
