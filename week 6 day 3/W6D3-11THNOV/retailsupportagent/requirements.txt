@@ -1,0 +1,18 @@
+#azure-ai-projects>=2.9.0
+#azure-identity
+#python-dotenv
+fastapi
+uvicorn
+redis
+azure-ai-projects>=2.9.0
+azure-identity
+python-dotenv
+#to start docker: open desktop app then in terminal-
+#docker run -d --name retail-redis -p 127.0.0.1:6379:6379 -v retail_redis_data:/data redis:7-alpine redis-server --appendonly yes
+#docker exec retail-redis redis-cli ping
+#python -m uvicorn main:app --reload
+#http://127.0.0.1:8000/docs
+#docker exec -it retail-redis redis-cli
+#KEYS retail:*
+
+
