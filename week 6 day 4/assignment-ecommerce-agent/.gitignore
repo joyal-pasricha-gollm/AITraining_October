@@ -1,0 +1,7 @@
+.env
+__pycache__/
+.pytest_cache/
+.venv/
+.verify-deps/
+.pdf-deps/
+sample_output.txt
