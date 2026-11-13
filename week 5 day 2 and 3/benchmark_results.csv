@@ -1,0 +1,6 @@
+question,expected_evidence,evidence_found,top_chunk,top_distance,time_seconds
+How many annual leave days do full-time employees receive?,18 days of paid annual leave,True,chunk_003,0.3442,36.28
+Which days are mandatory office days?,Tuesdays and Thursdays,True,chunk_002,0.5461,0.41
+How many paid sick leave days are provided?,eight days of paid sick leave,True,chunk_003,0.238,0.43
+When must a lost laptop be reported?,within 24 hours,True,chunk_006,0.3702,0.4
+What is the response target for a Priority 1 incident?,within 30 minutes,True,chunk_005,0.5002,0.43
