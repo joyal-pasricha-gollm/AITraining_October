@@ -1,0 +1,51 @@
+BRIGHTPATH ANALYTICS — EMPLOYEE GUIDE
+Version: Training Edition 1.0
+
+IMPORTANT: BrightPath Analytics is a fictional company created only for this Python RAG demonstration. Its policies are sample data, not real-world advice.
+
+1. COMPANY OVERVIEW
+BrightPath Analytics develops data products and internal business applications. The organization has engineering, product, human resources, finance, information technology, and customer support teams. Employees should use the internal helpdesk for software issues and contact Human Resources for questions about leave and workplace policies. This guide is the primary reference for the example questions used in the training project.
+
+2. WORKING HOURS AND ATTENDANCE
+Standard working hours are Monday through Friday, 9:30 AM to 6:00 PM local time. The regular lunch break is 45 minutes. Employees are expected to update their attendance in the employee portal by the end of each workday. If an employee is late because of an emergency, the employee should notify their reporting manager as soon as practical. Flexible working hours require advance approval from the reporting manager.
+
+3. HYBRID WORK POLICY
+Employees who are eligible for hybrid work are expected to work from the office on Tuesdays and Thursdays. Monday, Wednesday, and Friday may be remote-work days with manager approval. Team leads can request additional office attendance for workshops, customer meetings, security reviews, or release activities. Employees working remotely must use company-approved devices and follow security requirements. Hybrid eligibility is confirmed during onboarding.
+
+4. ANNUAL LEAVE
+Full-time employees receive 18 days of paid annual leave per calendar year. Annual leave requests should be submitted in the employee portal at least five working days before the planned absence whenever possible. Reporting managers normally approve or reject a standard leave request within three working days. Employees should make a handover plan before taking an extended vacation. Unused annual leave rules are specified in the individual employment agreement; this sample guide does not define carry-forward limits.
+
+5. SICK LEAVE
+Employees receive eight days of paid sick leave per calendar year under this fictional policy. An employee who is unwell should notify their reporting manager on the first day of absence. If sick leave continues for three consecutive working days or longer, the employee should submit a medical certificate to Human Resources. Sick leave requests are recorded in the employee portal when the employee is able to do so.
+
+6. NEW EMPLOYEE ONBOARDING
+On the fiBrightPath_Employee_Guide.txtrst working day, Human Resources completes identity and payroll verification and the IT team issues approved equipment. New employees receive access to company email, the employee portal, and the internal helpdesk. Every new employee must complete mandatory information-security awareness training within the first 30 calendar days. The reporting manager assigns a buddy for the initial two weeks. Onboarding issues are reported to onboarding@brightpath.example, a fictional address used for demonstration.
+
+7. IT SUPPORT AND HELP DESK
+IT issues are submitted through the internal helpdesk portal. A support ticket must include a short issue title, description, device name when relevant, and the impact on work. Priority 1 refers to a widespread outage or a critical business system that is unavailable. Priority 2 refers to a major issue affecting a small group or a significant function. Priority 3 refers to ordinary individual issues such as software installation or password assistance. For a Priority 1 outage, employees should also telephone the IT duty contact listed in the internal directory. The fictional support desk targets an initial response within 30 minutes for Priority 1, four working hours for Priority 2, and two working days for Priority 3.
+
+8. PASSWORDS AND ACCOUNT SECURITY
+Employees must use multi-factor authentication for company email and approved cloud applications. Passwords must not be shared with colleagues or stored in plain-text documents. Suspected phishing messages should be reported through the email client's phishing-reporting function. If a device or credential may have been compromised, the employee must notify the security team immediately through the security incident channel. Employees should never place API keys, passwords, or confidential customer data into public code repositories.
+
+9. LOST OR STOLEN DEVICES
+A lost or stolen company laptop or mobile device must be reported to IT and the security team within 24 hours of discovery. The report should include the device type, last known location if known, and approximate time the employee noticed the loss. IT may remotely lock the device or revoke access tokens as a precaution. Employees should not delay reporting because they hope to find the device. Replacement equipment is managed by IT after the incident is logged.
+
+10. EXPENSE CLAIMS
+Approved business expenses can be reimbursed when they are supported by itemized receipts. Employees should submit an expense claim in the finance portal within 14 calendar days after the expense is incurred. Each claim must include the expense date, amount, business reason, cost center, and proof of payment. Personal purchases and unapproved entertainment are not reimbursable. The Finance team normally reviews complete claims within seven working days. Travel expenses also require the travel approval described below.
+
+11. BUSINESS TRAVEL
+Employees must obtain written manager approval before booking business travel. International travel additionally requires approval from the department head. Approved travel requests should include the business purpose, destination, dates, and estimated budget. Economy class is the default flight class for the fictional company unless a documented exception is approved. Travelers should retain receipts and submit expense claims within 14 calendar days of the expense date.
+
+12. LEARNING AND DEVELOPMENT
+Employees are encouraged to complete job-relevant training. Each employee has an illustrative annual learning budget of INR 20,000, subject to manager approval. Courses must relate to the employee's responsibilities or an agreed development goal. Employees should request approval before paying for external training. Mandatory information-security training is separate from the optional learning budget and must be completed within 30 calendar days of joining.
+
+13. PERFORMANCE REVIEWS
+The organization conducts formal performance conversations twice each year, in June and December. Employees and managers review goals, work outcomes, collaboration, and learning needs. A written summary is recorded in the employee portal after the discussion. A performance review does not automatically result in a salary adjustment or promotion. Promotion decisions follow a separate organizational approval process.
+
+14. DATA CLASSIFICATION
+BrightPath uses three data labels: Public, Internal, and Confidential. Public content can be shared outside the company after normal review. Internal content is intended for employees and authorized contractors. Confidential content, including customer records, unreleased financial information, and private credentials, must only be stored in approved protected systems. Employees must not upload Confidential documents to unapproved third-party AI services. If the classification of a document is uncertain, employees should ask the data owner before sharing it.
+
+15. QUESTIONS NOT COVERED BY THIS GUIDE
+This sample guide does not specify maternity leave, parental leave, retirement benefits, salary bands, office parking fees, or reimbursement of home internet charges. Employees should ask Human Resources or Finance for policies not explicitly included here. For this RAG demonstration, questions about missing policies should receive an answer that the provided document does not contain that information, rather than a guessed answer.
+
+END OF TRAINING DOCUMENT

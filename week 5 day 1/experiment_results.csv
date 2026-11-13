@@ -1,0 +1,3 @@
+experiment,chunk_count,evidence_found_out_of_5,average_query_ms
+Baseline 180/35,10,5,11.1
+Experiment 100/35,22,5,4.7
